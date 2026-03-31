@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1140" viewBox="0 0 1240 1140" role="img" aria-labelledby="title desc">
+  <title id="title">Claude Code 风格 Agent Runtime 总体系统架构图</title>
+  <desc id="desc">总图采用中轴执行骨干、左侧入口与模式、右侧扩展挂载点、底部横切治理与基础设施的布局，以减少跨区跳线并保持主链路清晰。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowWarm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c5f2b"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .panel { rx: 20; ry: 20; stroke-width: 1.5; }
+      .entry-panel { fill: #eef8f3; stroke: #9cc8ae; }
+      .core-panel { fill: #eef5ff; stroke: #9fb9e8; }
+      .ext-panel { fill: #fff6ea; stroke: #dbb97a; }
+      .gov-panel { fill: #f8fafc; stroke: #cbd5e1; }
+      .node { rx: 16; ry: 16; stroke-width: 1.5; }
+      .entry-node { fill: #ffffff; stroke: #84b39a; }
+      .core-node { fill: #ffffff; stroke: #8fafe6; }
+      .ext-node { fill: #ffffff; stroke: #d4a95a; }
+      .gov-node { fill: #ffffff; stroke: #a8b4c5; }
+      .title { font: 700 30px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #111827; }
+      .subtitle { font: 400 15px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; }
+      .group-title { font: 700 19px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #1f2937; }
+      .panel-note { font: 600 12px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #64748b; letter-spacing: 0.2px; }
+      .node-title { font: 700 15.5px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #111827; text-anchor: middle; }
+      .node-sub { font: 400 12.3px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; text-anchor: middle; }
+      .label { font: 600 12.5px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; }
+      .main-flow { stroke: #475569; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .branch-flow { stroke: #475569; stroke-width: 1.9; fill: none; }
+      .mount-flow { stroke: #7c5f2b; stroke-width: 1.9; fill: none; marker-end: url(#arrowWarm); }
+      .aux-flow { stroke: #64748b; stroke-width: 1.7; fill: none; stroke-dasharray: 6 5; marker-end: url(#arrowDash); }
+      .aux-rail { stroke: #94a3b8; stroke-width: 1.5; fill: none; stroke-dasharray: 7 5; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1240" height="1140"/>
+
+  <text class="title" x="48" y="58">Claude Code 风格 Agent Runtime 总体系统架构图</text>
+  <text class="subtitle" x="48" y="86">主链路走中轴，跨区关系走正交路由槽位，左侧收入口，右侧挂扩展，底部收拢治理与基础设施，避免跳线、出框和说明文字挤压。</text>
+
+  <rect class="panel entry-panel" x="40" y="130" width="250" height="790"/>
+  <text class="group-title" x="60" y="165">入口与模式</text>
+  <text class="panel-note" x="60" y="187">多入口先收敛，再进入统一适配层</text>
+
+  <rect class="panel core-panel" x="330" y="130" width="460" height="830"/>
+  <text class="group-title" x="350" y="165">主执行骨干</text>
+  <text class="panel-note" x="350" y="187">真正共享的 runtime 主血管</text>
+
+  <rect class="panel ext-panel" x="850" y="130" width="320" height="830"/>
+  <text class="group-title" x="870" y="165">扩展与高级能力挂载点</text>
+  <text class="panel-note" x="870" y="187">命令、MCP、Agent、Remote 沿挂载槽位接入</text>
+
+  <rect class="panel gov-panel" x="40" y="980" width="1130" height="130"/>
+  <text class="group-title" x="60" y="1015">横切治理与基础设施</text>
+  <text class="panel-note" x="60" y="1037">底部平面通过正交支撑线进入主链路，观测面单独走虚线，不和主执行线混在一起</text>
+
+  <rect class="node entry-node" x="72" y="210" width="186" height="70"/>
+  <text class="node-title" x="165" y="238">CLI / 控制命令</text>
+  <text class="node-sub" x="165" y="259">version, doctor, config</text>
+
+  <rect class="node entry-node" x="72" y="305" width="186" height="70"/>
+  <text class="node-title" x="165" y="333">REPL</text>
+  <text class="node-sub" x="165" y="354">交互式终端会话</text>
+
+  <rect class="node entry-node" x="72" y="400" width="186" height="70"/>
+  <text class="node-title" x="165" y="428">Headless / SDK</text>
+  <text class="node-sub" x="165" y="449">print, stream-json, API</text>
+
+  <rect class="node entry-node" x="72" y="495" width="186" height="70"/>
+  <text class="node-title" x="165" y="523">Remote Client</text>
+  <text class="node-sub" x="165" y="544">viewer, controller</text>
+
+  <text class="label" x="92" y="628">多入口收敛</text>
+  <rect class="node entry-node" x="72" y="650" width="186" height="84"/>
+  <text class="node-title" x="165" y="682">Entry Adapters</text>
+  <text class="node-sub" x="165" y="704">argv, stdin, SDK, remote</text>
+
+  <rect class="node core-node" x="410" y="190" width="300" height="84"/>
+  <text class="node-title" x="560" y="221">main.tsx / Commander</text>
+  <text class="node-sub" x="560" y="244">参数解析, 子命令, 模式分发</text>
+
+  <rect class="node core-node" x="410" y="310" width="300" height="84"/>
+  <text class="node-title" x="560" y="341">init() / setup()</text>
+  <text class="node-sub" x="560" y="364">config, trust, registry bootstrap</text>
+
+  <rect class="node core-node" x="410" y="430" width="300" height="84"/>
+  <text class="node-title" x="560" y="461">processUserInput()</text>
+  <text class="node-sub" x="560" y="484">normalize, commands, attachments, hooks</text>
+
+  <rect class="node core-node" x="410" y="550" width="300" height="84"/>
+  <text class="node-title" x="560" y="581">QueryEngine / query()</text>
+  <text class="node-sub" x="560" y="604">prompt, stream, retry, recursive loop</text>
+
+  <rect class="node core-node" x="410" y="670" width="300" height="84"/>
+  <text class="node-title" x="560" y="701">Tool Runtime</text>
+  <text class="node-sub" x="560" y="724">pool assembly, runTools, progress, tool_result</text>
+
+  <rect class="node core-node" x="410" y="790" width="300" height="84"/>
+  <text class="node-title" x="560" y="821">Session / Transcript</text>
+  <text class="node-sub" x="560" y="844">task state, usage, lifecycle, resume</text>
+
+  <rect class="node core-node" x="390" y="890" width="340" height="60"/>
+  <text class="node-title" x="560" y="916">Persistent Store</text>
+  <text class="node-sub" x="560" y="938">transcript, session, tasks, snapshots</text>
+
+  <rect class="node ext-node" x="890" y="210" width="240" height="84"/>
+  <text class="node-title" x="1010" y="241">Plugin Loader</text>
+  <text class="node-sub" x="1010" y="264">manifest, cache, source policy</text>
+
+  <rect class="node ext-node" x="890" y="370" width="240" height="84"/>
+  <text class="node-title" x="1010" y="401">Command / Skills</text>
+  <text class="node-sub" x="1010" y="424">slash commands, prompt/local</text>
+
+  <rect class="node ext-node" x="890" y="530" width="240" height="84"/>
+  <text class="node-title" x="1010" y="561">MCP Projection</text>
+  <text class="node-sub" x="1010" y="584">tools, resources, prompts, commands</text>
+
+  <rect class="node ext-node" x="890" y="690" width="240" height="84"/>
+  <text class="node-title" x="1010" y="721">Agent Runtime</text>
+  <text class="node-sub" x="1010" y="744">AgentTool, coordinator, background tasks</text>
+
+  <rect class="node ext-node" x="890" y="850" width="240" height="84"/>
+  <text class="node-title" x="1010" y="881">Remote Bridge</text>
+  <text class="node-sub" x="1010" y="904">session manager, transport, relay</text>
+
+  <rect class="node gov-node" x="70" y="1020" width="180" height="62"/>
+  <text class="node-title" x="160" y="1047">Filesystem / Shell</text>
+  <text class="node-sub" x="160" y="1069">read, write, bash, git</text>
+
+  <rect class="node gov-node" x="270" y="1020" width="180" height="62"/>
+  <text class="node-title" x="360" y="1047">Model Provider</text>
+  <text class="node-sub" x="360" y="1069">streaming, retry, token usage</text>
+
+  <rect class="node gov-node" x="470" y="1020" width="200" height="62"/>
+  <text class="node-title" x="570" y="1047">Permissions / Sandbox</text>
+  <text class="node-sub" x="570" y="1069">allow, ask, deny</text>
+
+  <rect class="node gov-node" x="690" y="1020" width="200" height="62"/>
+  <text class="node-title" x="790" y="1047">Compact</text>
+  <text class="node-sub" x="790" y="1069">summary, shrink, recovery</text>
+
+  <rect class="node gov-node" x="910" y="1020" width="230" height="62"/>
+  <text class="node-title" x="1025" y="1047">Telemetry / Diagnostics</text>
+  <text class="node-sub" x="1025" y="1069">startup, query, task, remote</text>
+
+  <path class="branch-flow" d="M 165 280 V 305"/>
+  <path class="branch-flow" d="M 165 375 V 400"/>
+  <path class="branch-flow" d="M 165 470 V 495"/>
+  <path class="branch-flow" d="M 165 565 V 650"/>
+  <path class="main-flow" d="M 258 692 H 300 V 232 H 410"/>
+
+  <path class="main-flow" d="M 560 274 V 310"/>
+  <path class="main-flow" d="M 560 394 V 430"/>
+  <path class="main-flow" d="M 560 514 V 550"/>
+  <path class="main-flow" d="M 560 634 V 670"/>
+  <path class="main-flow" d="M 560 754 V 790"/>
+  <path class="main-flow" d="M 560 874 V 890"/>
+
+  <path class="mount-flow" d="M 1010 294 V 370"/>
+  <path class="mount-flow" d="M 1010 454 V 530"/>
+  <path class="mount-flow" d="M 1010 614 V 690"/>
+  <path class="mount-flow" d="M 1010 774 V 850"/>
+
+  <path class="mount-flow" d="M 890 412 H 830 V 472 H 710"/>
+  <path class="mount-flow" d="M 890 572 H 830 V 592 H 710"/>
+  <path class="mount-flow" d="M 890 732 H 830 V 712 H 710"/>
+  <path class="mount-flow" d="M 890 892 H 830 V 832 H 710"/>
+
+  <path class="main-flow" d="M 160 1020 V 960 H 390 V 712 H 410"/>
+  <path class="main-flow" d="M 360 1020 V 950 H 390 V 592 H 410"/>
+  <path class="main-flow" d="M 570 1020 V 950 H 730 V 712 H 710"/>
+  <path class="main-flow" d="M 790 1020 V 950 H 730 V 832 H 710"/>
+
+  <path class="aux-rail" d="M 360 948 H 1110"/>
+  <path class="aux-flow" d="M 1025 1020 V 948"/>
+  <path class="aux-flow" d="M 810 948 V 592 H 710"/>
+  <path class="aux-flow" d="M 820 948 V 832 H 710"/>
+  <path class="aux-flow" d="M 1110 948 V 892 H 1130"/>
+
+</svg>

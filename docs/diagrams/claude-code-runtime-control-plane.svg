@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="980" viewBox="0 0 1320 980" role="img" aria-labelledby="title desc">
+  <title id="title">Claude Code 风格 Agent Runtime 控制平面图</title>
+  <desc id="desc">本图展示权限、上下文治理、观测、插件、MCP、Agent、Remote 等控制平面能力如何挂载到运行时核心，而不与执行主链混在一起。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowWarm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c5f2b"/>
+    </marker>
+    <marker id="arrowCool" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .panel { rx: 20; ry: 20; stroke-width: 1.5; }
+      .policy-panel { fill: #eef8f3; stroke: #9cc8ae; }
+      .core-panel { fill: #eef5ff; stroke: #9fb9e8; }
+      .ext-panel { fill: #fff6ea; stroke: #dbb97a; }
+      .infra-panel { fill: #f8fafc; stroke: #cbd5e1; }
+      .node { rx: 16; ry: 16; stroke-width: 1.5; }
+      .policy-node { fill: #ffffff; stroke: #84b39a; }
+      .core-node { fill: #ffffff; stroke: #8fafe6; }
+      .ext-node { fill: #ffffff; stroke: #d4a95a; }
+      .infra-node { fill: #ffffff; stroke: #a8b4c5; }
+      .title { font: 700 30px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #111827; }
+      .subtitle { font: 400 15px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; }
+      .group-title { font: 700 19px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #1f2937; }
+      .panel-note { font: 600 12px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #64748b; }
+      .node-title { font: 700 15px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #111827; text-anchor: middle; }
+      .node-sub { font: 400 12px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; text-anchor: middle; }
+      .label { font: 600 12px Arial, "Helvetica Neue", "PingFang SC", sans-serif; fill: #475569; }
+      .policy-flow { stroke: #2f6f58; stroke-width: 1.9; fill: none; marker-end: url(#arrow); }
+      .core-flow { stroke: #475569; stroke-width: 2.1; fill: none; marker-end: url(#arrow); }
+      .ext-flow { stroke: #7c5f2b; stroke-width: 1.9; fill: none; marker-end: url(#arrowWarm); }
+      .obs-flow { stroke: #2563eb; stroke-width: 1.8; fill: none; stroke-dasharray: 6 5; marker-end: url(#arrowCool); }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1320" height="980"/>
+
+  <text class="title" x="48" y="58">Claude Code 风格 Agent Runtime 控制平面图</text>
+  <text class="subtitle" x="48" y="86">这张图不再追一轮 query 的执行顺序，而是单独解释谁在约束主链、谁在扩展主链、谁在观测主链。</text>
+
+  <rect class="panel policy-panel" x="40" y="130" width="300" height="640"/>
+  <text class="group-title" x="60" y="166">策略与治理</text>
+  <text class="panel-note" x="60" y="188">决定“能不能做、带着什么上下文做、如何被审计”</text>
+
+  <rect class="panel core-panel" x="390" y="130" width="420" height="700"/>
+  <text class="group-title" x="410" y="166">Runtime Core</text>
+  <text class="panel-note" x="410" y="188">控制平面围绕它挂载，而不是取代它</text>
+
+  <rect class="panel ext-panel" x="860" y="130" width="420" height="700"/>
+  <text class="group-title" x="880" y="166">扩展与高级能力</text>
+  <text class="panel-note" x="880" y="188">命令、MCP、Agent、Remote 都通过明确挂载点接入</text>
+
+  <rect class="panel infra-panel" x="40" y="820" width="1240" height="110"/>
+  <text class="group-title" x="60" y="856">基础设施与执行介质</text>
+  <text class="panel-note" x="60" y="878">它们支持核心运行，但不替代治理层与扩展层的职责</text>
+
+  <rect class="node policy-node" x="80" y="220" width="220" height="84"/>
+  <text class="node-title" x="190" y="251">Permissions / Sandbox</text>
+  <text class="node-sub" x="190" y="274">allow, ask, deny, workspace trust</text>
+
+  <rect class="node policy-node" x="80" y="380" width="220" height="84"/>
+  <text class="node-title" x="190" y="411">Compact / Context Governance</text>
+  <text class="node-sub" x="190" y="434">summary, shrink, restore, token budget</text>
+
+  <rect class="node policy-node" x="80" y="540" width="220" height="84"/>
+  <text class="node-title" x="190" y="571">Telemetry / Diagnostics</text>
+  <text class="node-sub" x="190" y="594">startup, query, tool, task, remote</text>
+
+  <rect class="node core-node" x="490" y="210" width="220" height="78"/>
+  <text class="node-title" x="600" y="240">Input / Command Resolution</text>
+  <text class="node-sub" x="600" y="261">prompt, slash command, local command</text>
+
+  <rect class="node core-node" x="490" y="350" width="220" height="78"/>
+  <text class="node-title" x="600" y="380">QueryEngine</text>
+  <text class="node-sub" x="600" y="401">prompt assembly, stream loop, retry</text>
+
+  <rect class="node core-node" x="490" y="490" width="220" height="78"/>
+  <text class="node-title" x="600" y="520">Tool Runtime</text>
+  <text class="node-sub" x="600" y="541">tool pool, tool_use, tool_result</text>
+
+  <rect class="node core-node" x="470" y="630" width="260" height="78"/>
+  <text class="node-title" x="600" y="660">Session / Transcript / Task</text>
+  <text class="node-sub" x="600" y="681">messages, usage, resume, replay facts</text>
+
+  <rect class="node ext-node" x="960" y="190" width="220" height="78"/>
+  <text class="node-title" x="1070" y="220">Plugin Loader</text>
+  <text class="node-sub" x="1070" y="241">manifest, source policy, cache</text>
+
+  <rect class="node ext-node" x="960" y="320" width="220" height="78"/>
+  <text class="node-title" x="1070" y="350">Command / Skills</text>
+  <text class="node-sub" x="1070" y="371">prompt/local/local-jsx commands</text>
+
+  <rect class="node ext-node" x="960" y="450" width="220" height="78"/>
+  <text class="node-title" x="1070" y="480">MCP Projection Layer</text>
+  <text class="node-sub" x="1070" y="501">tools, resources, prompts, commands</text>
+
+  <rect class="node ext-node" x="960" y="580" width="220" height="78"/>
+  <text class="node-title" x="1070" y="610">Agent Runtime / Coordinator</text>
+  <text class="node-sub" x="1070" y="631">AgentTool, tasks, background execution</text>
+
+  <rect class="node ext-node" x="960" y="710" width="220" height="78"/>
+  <text class="node-title" x="1070" y="740">Remote Bridge / Session Relay</text>
+  <text class="node-sub" x="1070" y="761">viewer, transport, permission relay</text>
+
+  <rect class="node infra-node" x="140" y="850" width="220" height="58"/>
+  <text class="node-title" x="250" y="884">Filesystem / Shell</text>
+
+  <rect class="node infra-node" x="470" y="850" width="220" height="58"/>
+  <text class="node-title" x="580" y="884">Model Provider</text>
+
+  <rect class="node infra-node" x="800" y="850" width="220" height="58"/>
+  <text class="node-title" x="910" y="884">Local Store / Snapshots</text>
+
+  <path class="core-flow" d="M 600 288 V 350"/>
+  <path class="core-flow" d="M 600 428 V 490"/>
+  <path class="core-flow" d="M 600 568 V 630"/>
+
+  <path class="policy-flow" d="M 300 262 H 430 V 529 H 490"/>
+  <path class="policy-flow" d="M 300 422 H 430 V 389 H 490"/>
+  <path class="policy-flow" d="M 300 422 H 430 V 669 H 470"/>
+
+  <path class="obs-flow" d="M 300 582 H 450 V 249 H 490"/>
+  <path class="obs-flow" d="M 300 582 H 450 V 389 H 490"/>
+  <path class="obs-flow" d="M 300 582 H 450 V 529 H 490"/>
+  <path class="obs-flow" d="M 300 582 H 450 V 669 H 470"/>
+  <path class="obs-flow" d="M 300 582 H 450 V 749 H 960"/>
+
+  <path class="ext-flow" d="M 1070 268 V 320"/>
+  <path class="ext-flow" d="M 1070 398 V 450"/>
+  <path class="ext-flow" d="M 1070 528 V 580"/>
+  <path class="ext-flow" d="M 1070 658 V 710"/>
+
+  <path class="ext-flow" d="M 960 359 H 870 V 249 H 710"/>
+  <path class="ext-flow" d="M 960 489 H 870 V 389 H 710"/>
+  <path class="ext-flow" d="M 960 489 H 870 V 529 H 710"/>
+  <path class="ext-flow" d="M 960 619 H 870 V 529 H 710"/>
+  <path class="ext-flow" d="M 960 619 H 870 V 669 H 730"/>
+  <path class="ext-flow" d="M 960 749 H 870 V 669 H 730"/>
+  <path class="ext-flow" d="M 960 749 H 900 V 304 H 300"/>
+
+  <path class="core-flow" d="M 250 850 V 800 H 520 V 568"/>
+  <path class="core-flow" d="M 580 850 V 800 H 600 V 428"/>
+  <path class="core-flow" d="M 910 850 V 800 H 640 V 708"/>
+
+  <text class="label" x="76" y="648">观测面走虚线</text>
+  <text class="label" x="955" y="812">Remote 同时接入会话与权限链</text>
+</svg>
