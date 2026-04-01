@@ -3,8 +3,8 @@
 > 目标: 复现一个“Claude Code 风格”的终端 Agent Runtime，优先复现其架构分层、运行链路、核心抽象和系统设计思想，而不是逐文件 1:1 还原 Anthropic 内部工程。
 
 **文档形态:** 总览索引 + 分章文档
-**上游研究基础:** [Claude Code Sourcemap 架构拆解与学习指南](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-architecture-guide.md)
-**单文档归档:** [2026-03-31-claude-code-runtime-reproduction-design.md](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction-design.md)
+**上游研究基础:** [Claude Code Sourcemap 架构拆解与学习指南](../2026-03-31-claude-code-architecture-guide.md)
+**单文档归档:** [2026-03-31-claude-code-runtime-reproduction-design.md](../2026-03-31-claude-code-runtime-reproduction-design.md)
 
 ---
 
@@ -93,31 +93,31 @@ flowchart LR
 
 ## 章节索引
 
-- 第 1 章 [引言](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-01-introduction.md) · 已写
-- 第 2 章 [问题定义与设计原则](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-02-problem-definition-and-principles.md) · 已写
-- 第 3 章 [产品分层与版本路线](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-03-product-phases-and-roadmap.md) · 已写
-- 第 4 章 [系统总览](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-04-system-overview.md) · 已写
-- 第 5 章 [运行模式设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-05-runtime-modes.md) · 已写
-- 第 6 章 [启动与初始化设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-06-bootstrap-and-initialization.md) · 已写
-- 第 7 章 [核心领域模型](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-07-core-domain-models.md) · 已写
-- 第 8 章 [会话与状态管理设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-08-session-and-state-management.md) · 已写
-- 第 9 章 [用户输入处理设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-09-user-input-processing.md) · 已写
-- 第 10 章 [System Prompt 与上下文拼装设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-10-system-prompt-and-context-assembly.md) · 已写
-- 第 11 章 [Query Engine 设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-11-query-engine.md) · 已写
-- 第 12 章 [Tool 系统设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-12-tool-system.md) · 已写
-- 第 13 章 [Command / Skill 系统设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-13-command-and-skill-system.md) · 已写
-- 第 14 章 [权限、信任与沙箱设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-14-permissions-trust-and-sandbox.md) · 已写
-- 第 15 章 [上下文治理与 Compact 设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-15-context-governance-and-compact.md) · 已写
-- 第 16 章 [MCP 集成设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-16-mcp-integration.md) · 已写
-- 第 17 章 [Plugin 系统设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-17-plugin-system.md) · 已写
-- 第 18 章 [Agent 与多 Agent 设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-18-agent-and-multi-agent.md) · 已写
-- 第 19 章 [Remote / Bridge 设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-19-remote-and-bridge.md) · 已写
-- 第 20 章 [可观测性与诊断设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-20-observability-and-diagnostics.md) · 已写
-- 第 21 章 [测试策略](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-21-testing-strategy.md) · 已写
-- 第 22 章 [安全设计](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-22-security-design.md) · 已写
-- 第 23 章 [实现路线图](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-23-implementation-roadmap.md) · 已写
-- 第 24 章 [开放问题与待决策项](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-24-open-questions.md) · 已写
-- 第 25 章 [附录](/Users/magongli/Downloads/project/claude-code-sourcemap/docs/plans/2026-03-31-claude-code-runtime-reproduction/chapter-25-appendix.md) · 已写
+- 第 1 章 [引言](./chapter-01-introduction.md) · 已写
+- 第 2 章 [问题定义与设计原则](./chapter-02-problem-definition-and-principles.md) · 已写
+- 第 3 章 [产品分层与版本路线](./chapter-03-product-phases-and-roadmap.md) · 已写
+- 第 4 章 [系统总览](./chapter-04-system-overview.md) · 已写
+- 第 5 章 [运行模式设计](./chapter-05-runtime-modes.md) · 已写
+- 第 6 章 [启动与初始化设计](./chapter-06-bootstrap-and-initialization.md) · 已写
+- 第 7 章 [核心领域模型](./chapter-07-core-domain-models.md) · 已写
+- 第 8 章 [会话与状态管理设计](./chapter-08-session-and-state-management.md) · 已写
+- 第 9 章 [用户输入处理设计](./chapter-09-user-input-processing.md) · 已写
+- 第 10 章 [System Prompt 与上下文拼装设计](./chapter-10-system-prompt-and-context-assembly.md) · 已写
+- 第 11 章 [Query Engine 设计](./chapter-11-query-engine.md) · 已写
+- 第 12 章 [Tool 系统设计](./chapter-12-tool-system.md) · 已写
+- 第 13 章 [Command / Skill 系统设计](./chapter-13-command-and-skill-system.md) · 已写
+- 第 14 章 [权限、信任与沙箱设计](./chapter-14-permissions-trust-and-sandbox.md) · 已写
+- 第 15 章 [上下文治理与 Compact 设计](./chapter-15-context-governance-and-compact.md) · 已写
+- 第 16 章 [MCP 集成设计](./chapter-16-mcp-integration.md) · 已写
+- 第 17 章 [Plugin 系统设计](./chapter-17-plugin-system.md) · 已写
+- 第 18 章 [Agent 与多 Agent 设计](./chapter-18-agent-and-multi-agent.md) · 已写
+- 第 19 章 [Remote / Bridge 设计](./chapter-19-remote-and-bridge.md) · 已写
+- 第 20 章 [可观测性与诊断设计](./chapter-20-observability-and-diagnostics.md) · 已写
+- 第 21 章 [测试策略](./chapter-21-testing-strategy.md) · 已写
+- 第 22 章 [安全设计](./chapter-22-security-design.md) · 已写
+- 第 23 章 [实现路线图](./chapter-23-implementation-roadmap.md) · 已写
+- 第 24 章 [开放问题与待决策项](./chapter-24-open-questions.md) · 已写
+- 第 25 章 [附录](./chapter-25-appendix.md) · 已写
 
 ---
 
